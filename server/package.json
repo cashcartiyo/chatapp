@@ -1,0 +1,63 @@
+{
+  "name": "smarthome",
+  "version": "1.0.0",
+  "description": "Medical tourism app",
+  "main": "./build/server.js",
+  "scripts": {
+    "build:clear": "rm -r -f ./build/",
+    "dist:clear": "rm -r -f ./dist/",
+    "dev": "webpack --config ./config/development/webpack.server.js --watch",
+    "build:dev": "webpack --config ./config/development/webpack.server.js",
+    "build:prod": "npm run dist:clear & webpack --config  ./config/production",
+    "start": "nodemon ./src/server.js"
+  },
+  "author": "havalecz  gergő ",
+  "license": "ISC",
+  "dependencies": {
+    "@tensorflow/tfjs-node": "^1.3.2",
+    "argon2": "^0.27.0",
+    "axios": "^0.21.4",
+    "bcrypt": "^5.0.0",
+    "chalk": "^4.1.0",
+    "cors": "^2.8.5",
+    "date-fns": "^2.9.0",
+    "elasticsearch": "^16.7.2",
+    "express": "^4.17.1",
+    "express-rate-limit": "^5.0.0",
+    "helmet": "^4.4.1",
+    "minio": "^7.0.19",
+    "mongoose": "^5.0.5",
+    "mongoose-aggregate-paginate-v2": "^1.0.4",
+    "mongoose-elasticsearch-xp": "^5.8.0",
+    "nodemailer": "^6.2.1",
+    "ramda": "^0.26.1",
+    "react": "^17.0.2",
+    "react-dom": "17.0.2",
+    "socket.io": "^4.2.0",
+    "uuid": "^8.3.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.15.4",
+    "@babel/core": "^7.15.5",
+    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
+    "@babel/plugin-transform-runtime": "^7.10.0",
+    "@babel/preset-env": "^7.4.5",
+    "@babel/preset-react": "^7.0.0",
+    "autoprefixer": "^9.6.0",
+    "babel-loader": "^8.0.6",
+    "file-loader": "^6.0.0",
+    "filemanager-webpack-plugin": "^6.1.7",
+    "html-webpack-plugin": "^4.3.0",
+    "source-map-loader": "^1.0.1",
+    "standard": "^14.3.1",
+    "style-loader": "^1.2.1",
+    "url-loader": "^4.1.0",
+    "webpack": "^5.52.1",
+    "webpack-cli": "^4.8.0",
+    "webpack-node-externals": "^2.5.1",
+    "nodemon-webpack-plugin": "^4.5.2"
+  },
+  "resolutions": {
+    "@babel/cli/chokidar": "3.4.2"
+  }
+}

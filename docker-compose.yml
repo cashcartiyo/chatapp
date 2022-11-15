@@ -1,0 +1,59 @@
+version: "3.3"
+
+services:
+  frontend:
+    build: 
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    container_name: frontend
+    networks:
+      - mern-network
+    volumes:
+      - type: bind
+        source: ./frontend/
+        target: /frontend/ 
+    working_dir: /frontend
+    depends_on:
+       - server
+    environment:
+      - REACT_APP_SERVER=${REACT_APP_SERVER}
+      - CHOKIDAR_USEPOLLING=${CHOKIDAR_USEPOLLING}
+    tty: true
+  
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    ports:
+      - 5000:5000
+    networks:
+      - mern-network
+    volumes:
+    - type: bind
+      source: ./server/src
+      target: /server/src
+    working_dir: /server
+    command: yarn dev
+    depends_on:
+      - db
+    environment:
+      - ${MONGO_URL}
+      - ${CLIENT}
+  db:
+    image: mongo:3.6.19-xenial
+    ports:
+      - 4202:4202
+    networks:
+      - mern-network
+    volumes:
+      - mongo-data:/data/db
+
+networks:
+  mern-network:
+    driver: bridge
+
+volumes:
+  mongo-data:
+    driver: local
